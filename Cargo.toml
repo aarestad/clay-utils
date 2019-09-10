@@ -1,12 +1,12 @@
 [package]
 name = "clay-utils"
-version = "0.0.1"
+version = "0.1.0"
 authors = ["Alexey Gerasev <alexey.gerasev@gmail.com>"]
 license = "MIT/Apache-2.0"
 edition = "2018"
 
-description = "Various subroutines for Clay - an OpenCL ray tracer"
-homepage = "https://github.com/clay-rs/clay-utils"
+description = "Various subroutines for Clay - fast, modular and extendable ray tracer"
+homepage = "https://clay-rs.github.io/"
 repository = "https://github.com/clay-rs/clay-utils"
 
 keywords = ["ray-tracing", "opencl"]
@@ -16,5 +16,7 @@ readme = "README.md"
 
 [dependencies]
 ocl = "0.19"
-clay-core = { git = "https://github.com/clay-rs/clay-core.git", rev = "c6e3ce379d6a883917bd2f26d48336c2d679e8de" }
+
+clay-core = "0.1"
+#clay-core = { git = "https://github.com/clay-rs/clay-core.git", rev = "c6e3ce379d6a883917bd2f26d48336c2d679e8de" }
 #clay-core = { path = "../clay-core" }

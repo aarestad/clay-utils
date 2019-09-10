@@ -1,6 +1,21 @@
 # clay-utils
 
-Various subroutines for [Clay](https://github.com/nthend/clay) project.
+[![Crates.io][crates_badge]][crates]
+[![Docs.rs][docs_badge]][docs]
+[![Travis CI][travis_badge]][travis]
+[![License][license_badge]][license]
+
+[crates_badge]: https://img.shields.io/crates/v/clay-utils.svg
+[docs_badge]: https://docs.rs/clay-utils/badge.svg
+[travis_badge]: https://api.travis-ci.org/clay-rs/clay-utils.svg?branch=master
+[license_badge]: https://img.shields.io/crates/l/clay-utils.svg
+
+[crates]: https://crates.io/crates/clay-utils
+[docs]: https://docs.rs/clay-utils
+[travis]: https://travis-ci.org/clay-rs/clay-utils
+[license]: #license
+
+Various subroutines for [Clay project](https://clay-rs.github.io/).
 
 ## License
 
