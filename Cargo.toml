@@ -1,6 +1,6 @@
 [package]
 name = "clay-utils"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Alexey Gerasev <alexey.gerasev@gmail.com>"]
 license = "MIT/Apache-2.0"
 edition = "2018"
@@ -17,6 +17,6 @@ readme = "README.md"
 [dependencies]
 ocl = "0.19"
 
-clay-core = "0.1"
+clay-core = "^0.1.2"
 #clay-core = { git = "https://github.com/clay-rs/clay-core.git", rev = "c6e3ce379d6a883917bd2f26d48336c2d679e8de" }
 #clay-core = { path = "../clay-core" }

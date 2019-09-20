@@ -1,4 +1,7 @@
-use std::time::Duration;
+use std::{
+    time::Duration,
+    f64::NAN,
+};
 
 
 pub struct FrameCounter {
@@ -9,14 +12,21 @@ pub struct FrameCounter {
     pub decay: f64,
     /// logging period
     /// Deafult is 2 seconds.
-    pub log_period: Duration,
+    pub log_period: Option<Duration>,
 }
 
 impl FrameCounter {
     pub fn new() -> Self {
         Self {
-            fps: 0.0, tacc: Duration::from_secs(0),
-            decay: 1e-1, log_period: Duration::from_secs(2),
+            fps: NAN, tacc: Duration::from_secs(0),
+            decay: 1e-1, log_period: None,
+        }
+    }
+
+    pub fn new_with_log(log_period: Duration) -> Self {
+        Self {
+            fps: NAN, tacc: Duration::from_secs(0),
+            decay: 1e-1, log_period: Some(log_period),
         }
     }
 
@@ -27,12 +37,18 @@ impl FrameCounter {
 
     pub fn step_frame(&mut self, time: Duration, n_passes: usize) {
         let cfps = (n_passes as f64)/((time.as_secs() as f64) + 1e-6*(time.as_micros() as f64));
-        self.fps = (1.0 - self.decay)*self.fps + self.decay*cfps;
+        if self.fps.is_nan() {
+            self.fps = cfps;
+        } else {
+            self.fps = (1.0 - self.decay)*self.fps + self.decay*cfps;
+        }
 
         self.tacc += time;
-        if self.tacc > self.log_period {
-            println!("FPS: {:.2}", self.fps);
-            self.tacc = Duration::from_secs(0);
+        if let Some(log_period) = self.log_period {
+            if self.tacc > log_period {
+                println!("FPS: {:.2}", self.fps);
+                self.tacc = Duration::from_secs(0);
+            }
         }
     }
 }
