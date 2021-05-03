@@ -1,20 +1,20 @@
-use std::{f64::NAN, time::Duration};
+use std::time::Duration;
 
 pub struct FrameCounter {
     fps: f64,
     tacc: Duration,
     /// Exponential decay factor of previous values.
-    /// Deafult value is `0.1`.
+    /// Default value is `0.1`.
     pub decay: f64,
     /// logging period
-    /// Deafult is 2 seconds.
+    /// Default is 2 seconds.
     pub log_period: Option<Duration>,
 }
 
 impl FrameCounter {
     pub fn new() -> Self {
         Self {
-            fps: NAN,
+            fps: f64::NAN,
             tacc: Duration::from_secs(0),
             decay: 1e-1,
             log_period: None,
@@ -23,7 +23,7 @@ impl FrameCounter {
 
     pub fn new_with_log(log_period: Duration) -> Self {
         Self {
-            fps: NAN,
+            fps: f64::NAN,
             tacc: Duration::from_secs(0),
             decay: 1e-1,
             log_period: Some(log_period),
