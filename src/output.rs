@@ -7,7 +7,8 @@ fn from_os(os_str: &OsStr) -> String {
 
 pub fn save_screenshot(image: &Image, lossless: bool) -> clay_core::Result<String> {
     fs::create_dir_all("screenshots")?;
-    let maxn = fs::read_dir("screenshots")?
+
+    let max_n = fs::read_dir("screenshots")?
         .filter_map(|f_| {
             f_.ok().map(|f| f.path()).and_then(|p| {
                 p.file_stem()
@@ -20,7 +21,7 @@ pub fn save_screenshot(image: &Image, lossless: bool) -> clay_core::Result<Strin
 
     let ext = if lossless { "png" } else { "jpg" };
 
-    let filename = format!("screenshots/{:04}.{}", maxn, ext);
+    let filename = format!("screenshots/{:04}.{}", max_n, ext);
     image.save_to_file(&filename)?;
     Ok(filename)
 }
