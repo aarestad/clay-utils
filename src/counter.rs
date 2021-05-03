@@ -1,8 +1,4 @@
-use std::{
-    time::Duration,
-    f64::NAN,
-};
-
+use std::{f64::NAN, time::Duration};
 
 pub struct FrameCounter {
     fps: f64,
@@ -18,15 +14,19 @@ pub struct FrameCounter {
 impl FrameCounter {
     pub fn new() -> Self {
         Self {
-            fps: NAN, tacc: Duration::from_secs(0),
-            decay: 1e-1, log_period: None,
+            fps: NAN,
+            tacc: Duration::from_secs(0),
+            decay: 1e-1,
+            log_period: None,
         }
     }
 
     pub fn new_with_log(log_period: Duration) -> Self {
         Self {
-            fps: NAN, tacc: Duration::from_secs(0),
-            decay: 1e-1, log_period: Some(log_period),
+            fps: NAN,
+            tacc: Duration::from_secs(0),
+            decay: 1e-1,
+            log_period: Some(log_period),
         }
     }
 
@@ -36,11 +36,11 @@ impl FrameCounter {
     }
 
     pub fn step_frame(&mut self, time: Duration, n_passes: usize) {
-        let cfps = (n_passes as f64)/((time.as_secs() as f64) + 1e-6*(time.as_micros() as f64));
+        let cfps = (n_passes as f64) / ((time.as_secs() as f64) + 1e-6 * (time.as_micros() as f64));
         if self.fps.is_nan() {
             self.fps = cfps;
         } else {
-            self.fps = (1.0 - self.decay)*self.fps + self.decay*cfps;
+            self.fps = (1.0 - self.decay) * self.fps + self.decay * cfps;
         }
 
         self.tacc += time;
@@ -52,5 +52,3 @@ impl FrameCounter {
         }
     }
 }
-
-
